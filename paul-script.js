@@ -15,3 +15,5 @@ for(var i = 0; i < my_devise.length; i++)
 }
 
 console.log(arr);
+
+console.log(arr.reduce((max, item) => max < item.price ? item.price : max, 0));
