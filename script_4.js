@@ -6,13 +6,10 @@ function isEpenser(element) {
 
 function isShortest(element) {
     my_array.sort(function(a, b){
-        // ASC  -> a.length - b.length
-        // DESC -> b.length - a.length
         return a.length - b.length;
       });
     var fifty_shortest = [];
     for (let i = 0; i < 50; i++) {
-
         fifty_shortest.push(my_array[i]);    
     }
     console.log(fifty_shortest);
@@ -34,12 +31,15 @@ function findDigit(element)
 function findUnderscore(element)
 {
     let count = 0;
-    for (let i = 0; i < my_array.length; i++) {
-        const element = my_array[i];
-        if (element.match('_') != null)
-            count++;
+    for (var index_handle = 0; index_handle < my_array.length; index_handle++) {
+      for (var index = 0; index < my_array[index_handle].length; index++) {
+        let regex = /_/g;
+        if (my_array[index_handle][index].match(regex)) {
+          count ++;
+        }
+      }
     }
-    console.log(count);
+  console.log(count);
 }
 
 function howManyAude(element)
@@ -55,13 +55,25 @@ function howManyAude(element)
     console.log(count);
 }
 
-function startWithUp(element)
+function haveUpper(element)
 {
     let capitalize = /[A-Z]/g
     let count = 0;
     for (let i = 0; i < my_array.length; i++) {
         const element = my_array[i];
-        if (capitalize.test(element))
+        if (element.match(capitalize))
+            count++;
+    }
+    console.log(count);
+}
+
+function startWithUpper(element)
+{
+    let count = 0;
+    let capitalize = /[A-Z]/g
+    for (let i = 0; i < element.length; i++) {
+        const first_char = element[i][1];
+        if (element[i][1].match(capitalize))
             count++;
     }
     console.log(count);
@@ -77,8 +89,11 @@ findDigit();
 console.log("Combien de 'Aude' / 'aude' ");
 howManyAude();
 
-console.log("Combien commence par une maj'");
-startWithUp();
+console.log("Combien commencer par une maj");
+startWithUpper(my_array);
+
+console.log("Combien contiennent des majs");
+haveUpper();
 
 console.log("Combien ont un '_' ?");
 findUnderscore();
