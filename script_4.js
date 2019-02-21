@@ -4,8 +4,6 @@ function isEpenser(element) {
     return element == "@epenser";
 }
 
-
-
 function isShortest(element) {
     my_array.sort(function(a, b){
         // ASC  -> a.length - b.length
@@ -20,7 +18,76 @@ function isShortest(element) {
     console.log(fifty_shortest);
 }
 
+function findDigit(element)
+{
+    let count = 0;
+    let digit = /[1-9]/g;
+
+    for (let i = 0; i < my_array.length; i++) {
+        const element = my_array[i];
+        if (element.match(digit) != null)
+            count++;
+    }
+    console.log(count);
+}
+
+function findUnderscore(element)
+{
+    let count = 0;
+    for (let i = 0; i < my_array.length; i++) {
+        const element = my_array[i];
+        if (element.match('_') != null)
+            count++;
+    }
+    console.log(count);
+}
+
+function howManyAude(element)
+{
+    let count = 0;
+    for (let i = 0; i < my_array.length; i++) {
+        const element = my_array[i];
+        if (element.includes("Aude"))
+            count++;
+        else if (element.includes("aude"))
+            count++;
+    }
+    console.log(count);
+}
+
+function startWithUp(element)
+{
+    let capitalize = /[A-Z]/g
+    let count = 0;
+    for (let i = 0; i < my_array.length; i++) {
+        const element = my_array[i];
+        if (capitalize.test(element))
+            count++;
+    }
+    console.log(count);
+}
+
+
+console.log("Combien de journaliste ?");
 console.log(my_array.length);
-console.log(my_array.findIndex(isEpenser));
-console.log(my_array.sort());
+
+console.log("Combien ont un numéro ?");
+findDigit();
+
+console.log("Combien de 'Aude' / 'aude' ");
+howManyAude();
+
+console.log("Combien commence par une maj'");
+startWithUp();
+
+console.log("Combien ont un '_' ?");
+findUnderscore();
+
+console.log("Qui sont les 50 plus petit");
 isShortest();
+
+console.log("Tri par ordre alpha' ");
+console.log(my_array.sort());
+
+console.log("Trouver Epenser !");
+console.log(my_array.findIndex(isEpenser));
