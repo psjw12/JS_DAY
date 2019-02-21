@@ -18,23 +18,29 @@ function createMyHash(first_arr, second_arr)
 
 createMyHash(my_devise, my_price);
 
-function mostExpensiveCrytpo(element)
+function mostExpensiveCrypto(element)
 {
-  let my_result = {};
-  let tmp_max = 0;
-  console.log("Voici les 10 crypto les plus cheres !")
+  let highestCrypto = "";
+  let valuehighestCrypto = 0;
+  console.log("Voici la crypto la plus cheres !")
   for (const currency in my_hash) {
     if (my_hash.hasOwnProperty(currency)) {
       const price = my_hash[currency];
-      console.log(currency);
-      console.log(price);
-      if (price > tmp_max) {
-        tmp_max = price;
-      }
-
+      //console.log(currency);
+      //console.log(price);
+      if (Number(my_hash[currency].substring(1)) > valuehighestCrypto) {
+        highestCrypto = currency;
+        valuehighestCrypto = Number(my_hash[currency].substring(1));
+      };
     }
   }
-  console.log(tmp_max);
+  console.log(highestCrypto + " " + valuehighestCrypto);
 }
 
-mostExpensiveCrytpo(my_hash);
+function mostCheapCrypto(element)
+{
+  let cheapestCrypto = "";
+  let valueCheapestCrypto = 0;
+}
+
+mostExpensiveCrypto(my_hash);
