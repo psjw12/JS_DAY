@@ -22,7 +22,7 @@ function mostExpensiveCrypto(element)
 {
   let highestCrypto = "";
   let valuehighestCrypto = 0;
-  console.log("Voici la crypto la plus cheres !")
+  console.log("Voici la crypto la plus cher !")
   for (const currency in my_hash) {
     if (my_hash.hasOwnProperty(currency)) {
       const price = my_hash[currency];
@@ -31,7 +31,7 @@ function mostExpensiveCrypto(element)
       if (Number(my_hash[currency].substring(1)) > valuehighestCrypto) {
         highestCrypto = currency;
         valuehighestCrypto = Number(my_hash[currency].substring(1));
-      };
+      }
     }
   }
   console.log(highestCrypto + " " + valuehighestCrypto);
@@ -40,7 +40,63 @@ function mostExpensiveCrypto(element)
 function mostCheapCrypto(element)
 {
   let cheapestCrypto = "";
-  let valueCheapestCrypto = 0;
+  let valueCheapestCrypto = 1;
+  console.log("Voici la crypto la moins cher");
+  for (const currency in my_hash) {
+    if (my_hash.hasOwnProperty(currency)) {
+      const price = my_hash[currency];
+      
+      if (Number(my_hash[currency].substring(1)) < valueCheapestCrypto) {
+        cheapestCrypto = currency;
+        valueCheapestCrypto = Number(my_hash[currency].substring(1));
+      }
+    }
+  }
+  console.log(cheapestCrypto + " " + valueCheapestCrypto);
 }
 
+function hasCrypto(hash) {
+  let count = 0;
+  for (currency_name in hash){
+    if (currency_name.indexOf("coin") !== -1) {
+      count ++;
+    }
+  }
+  console.log("Il y a " + count + " avec le mot 'coin' ");
+  return count;
+}
+
+function underSixThousand(element)
+{
+  let cheap_currrency = [];
+  let sixThousand = 6000;
+  let cheapCrypto = "";
+  let cheapPrice = 0;
+  let max_value = 0;
+  let max_currency = "";
+  console.log("Voici tout les crypto en dessous de 6000 boulasse (dites 'accessibles')");
+  for (const currency in my_hash) {
+    if (my_hash.hasOwnProperty(currency)) {
+      const price = my_hash[currency];
+      if (Number(my_hash[currency].substring(1)) < sixThousand) {
+        cheapCrypto = currency;
+        cheapPrice = Number(my_hash[currency].substring(1));
+        if (max_value < cheapPrice) {
+          max_value = cheapPrice
+          max_currency = currency;
+        }
+        cheap_currrency.push(cheapCrypto);
+      }
+    }
+  }
+  console.log(cheap_currrency);
+  console.log("Et voici la plus cher des moins cher");
+  console.log(max_currency + " " + max_value);
+}
+
+
+
 mostExpensiveCrypto(my_hash);
+mostCheapCrypto(my_hash);
+hasCrypto(my_hash);
+underSixThousand();
